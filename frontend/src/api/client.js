@@ -7,12 +7,15 @@ const api = axios.create({
   },
 });
 
-// Request interceptor to inject Authorization header
+// Request interceptor to inject Authorization header and handle FormData
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('trustvault_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type'];
     }
     return config;
   },

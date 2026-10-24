@@ -39,13 +39,28 @@ export const RegisterPage = () => {
     e.preventDefault();
     setError('');
 
+    if (!fullName.trim()) {
+      setError('Please enter your full name.');
+      return;
+    }
+
+    if (!username.trim()) {
+      setError('Please enter a username.');
+      return;
+    }
+
+    if (!email.trim()) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return;
     }
 
     if (!isPasswordValid) {
-      setError('Password does not fulfill security requirements.');
+      setError('Password does not fulfill security requirements (min. 8 characters, uppercase, lowercase, number, and special symbol).');
       return;
     }
 
@@ -215,8 +230,8 @@ export const RegisterPage = () => {
 
             <button
               type="submit"
-              disabled={loading || !isPasswordValid}
-              className="w-full py-2.5 px-4 rounded-xl vault-beige-btn text-xs font-semibold shadow-md transition-all disabled:opacity-50 mt-1"
+              disabled={loading}
+              className="w-full py-2.5 px-4 rounded-xl vault-beige-btn text-xs font-semibold shadow-md transition-all disabled:opacity-50 mt-1 cursor-pointer"
             >
               {loading ? 'Creating account...' : 'Create Account'}
             </button>
