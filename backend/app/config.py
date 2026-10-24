@@ -15,6 +15,8 @@ class Config:
     
     # Database
     DATABASE_URL = os.getenv("DATABASE_URL")
+    if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
     if not DATABASE_URL:
         instance_dir = BASE_DIR / "instance"
         instance_dir.mkdir(parents=True, exist_ok=True)
@@ -38,7 +40,8 @@ class Config:
     RATELIMIT_STRATEGY = "fixed-window"
     
     # CORS
-    CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
+    raw_cors = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
+    CORS_ORIGINS = [o.strip() for o in raw_cors.split(",") if o.strip()]
     
     # Environment
     ENV = os.getenv("FLASK_ENV", "development")
