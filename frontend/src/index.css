@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0A0B0D;
+  color: #F4F4F6;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Minimalist Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0B0D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #282A33;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E8DFD8;
+}
+
+/* Clean cards and subtle hover effects */
+.vault-card {
+  background-color: #15161A;
+  border: 1px solid #282A33;
+  border-radius: 0.875rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vault-card:hover {
+  border-color: rgba(232, 223, 216, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
+}
+
+.vault-glow {
+  box-shadow: 0 0 30px -5px rgba(232, 223, 216, 0.15);
+}
+
+.vault-beige-btn {
+  background-color: #E8DFD8;
+  color: #0A0B0D;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vault-beige-btn:hover {
+  background-color: #F5EFEB;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(232, 223, 216, 0.25);
+}
+
+.vault-dark-btn {
+  background-color: #1C1E23;
+  color: #F4F4F6;
+  border: 1px solid #282A33;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vault-dark-btn:hover {
+  background-color: #24262E;
+  border-color: #3D414D;
+  color: #FFFFFF;
+}
+
+/* Shimmer animation for smooth skeleton loading */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #18191E;
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(232, 223, 216, 0.05) 20%,
+    rgba(232, 223, 216, 0.12) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 1.8s infinite;
+}
